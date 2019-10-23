@@ -18,14 +18,13 @@ public class NotaFiscalDAO {
     public static boolean addNota(NotaFiscal nota) {
         
         listaNotas.add(nota);
-        System.out.println("Agora lista geral");
+        System.out.println("\nAgora lista geral");
         for (int i = 0; i < listaNotas.size(); i++) {
             NotaFiscal get = listaNotas.get(i);
             System.out.println(get.getNumNota());
+            System.out.println(get.getNomeProd());
             System.out.println(get.getValNota());
-            
         }
-        
         return true;
     }
     
@@ -36,5 +35,4 @@ public class NotaFiscalDAO {
     public static NotaFiscal linha(int i){
         return listaNotas.get(i);
     }
-
 }

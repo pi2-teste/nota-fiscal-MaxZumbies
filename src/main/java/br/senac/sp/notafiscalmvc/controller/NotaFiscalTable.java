@@ -10,10 +10,10 @@ import br.senac.sp.notafiscalmvc.model.NotaFiscal;
 import javax.swing.table.AbstractTableModel;
 
 public class NotaFiscalTable extends AbstractTableModel {
-    private String[] columnNames = {"NumNota","ValNota"};
+    private String[] columnNames = {"Número da nota","Descrição Produto","Valor"};
 
     public int getColumnCount() {
-        return 2;
+        return 3;
     }
 
     public int getRowCount() {
@@ -29,10 +29,14 @@ public class NotaFiscalTable extends AbstractTableModel {
         //implementar metodo
         NotaFiscal nota;
         nota = NotaFiscalDAO.linha(row);
-        if (col == 0) 
-            return nota.getNumNota();
-        else
-         return nota.getValNota();   
+        switch (col) {
+            case 0:
+                return nota.getNumNota();
+            case 1:
+                return nota.getNomeProd();
+            default:   
+                return nota.getValNota();
+        }
     }
 
     public Class getColumnClass(int c) {

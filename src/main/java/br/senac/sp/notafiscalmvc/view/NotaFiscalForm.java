@@ -13,12 +13,10 @@ public class NotaFiscalForm extends javax.swing.JFrame {
      * Creates new form notaFIscalForm
      */
     private NotaFiscalController controller;
-    private NotaFiscalTable tableController;
     
     public NotaFiscalForm() {
         initComponents();
         controller = new NotaFiscalController();
-        tableController = new NotaFiscalTable();
     }
     
     public void refreshTable(){
@@ -38,9 +36,11 @@ public class NotaFiscalForm extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         campoNumNota = new javax.swing.JTextField();
+        campoNomeProd = new javax.swing.JTextField();
         campoValorNota = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        labelNumNota = new javax.swing.JLabel();
+        labelNomeProd = new javax.swing.JLabel();
+        labelValorNota = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,9 +48,17 @@ public class NotaFiscalForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Num nota");
+        campoValorNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoValorNotaActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Valor");
+        labelNumNota.setText("Número da nota");
+
+        labelNomeProd.setText("Nome do produto");
+
+        labelValorNota.setText("Valor da nota");
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -63,35 +71,42 @@ public class NotaFiscalForm extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(campoValorNota, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                    .addComponent(campoNumNota))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(243, Short.MAX_VALUE)
-                .addComponent(btnSalvar)
-                .addGap(87, 87, 87))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelNumNota)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoNumNota))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelNomeProd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoNomeProd))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelValorNota)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoValorNota)))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoNumNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                    .addComponent(labelNumNota))
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoValorNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                    .addComponent(campoNomeProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNomeProd))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelValorNota)
+                    .addComponent(campoValorNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(btnSalvar)
-                .addGap(66, 66, 66))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Registrar nota", jPanel1);
@@ -103,13 +118,13 @@ public class NotaFiscalForm extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Lista de notas", jPanel2);
@@ -130,15 +145,21 @@ public class NotaFiscalForm extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         System.out.println("Número da nota:" + campoNumNota.getText());
+        System.out.println("Nome do produto:" + campoNomeProd.getText());
         System.out.println("Valor da nota:" + campoValorNota.getText());
         
-        int numNota; double valorNota;
+        int numNota; String nomeProd; double valorNota;
         numNota = Integer.parseInt(campoNumNota.getText());
+        nomeProd = campoNomeProd.getText();
         valorNota = Double.parseDouble(campoValorNota.getText());
         
-        controller.salvar(numNota,valorNota);
+        controller.salvar(numNota,nomeProd,valorNota);
         refreshTable();
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void campoValorNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValorNotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoValorNotaActionPerformed
 
     private void unused(){
         System.out.println("nossa");
@@ -181,14 +202,16 @@ public class NotaFiscalForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JTextField campoNomeProd;
     private javax.swing.JTextField campoNumNota;
     private javax.swing.JTextField campoValorNota;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel labelNomeProd;
+    private javax.swing.JLabel labelNumNota;
+    private javax.swing.JLabel labelValorNota;
     private javax.swing.JTable tableNotas;
     // End of variables declaration//GEN-END:variables
 }
