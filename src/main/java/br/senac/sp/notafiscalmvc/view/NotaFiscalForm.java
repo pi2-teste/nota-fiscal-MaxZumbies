@@ -17,9 +17,12 @@ public class NotaFiscalForm extends javax.swing.JFrame {
      * Creates new form notaFIscalForm
      */
     private NotaFiscalController controller;
+    //private NotaFiscalTable tableController;
+    
     public NotaFiscalForm() {
         initComponents();
         controller = new NotaFiscalController();
+        //tableController = new NotaFiscalTable();
     }
 
     /**

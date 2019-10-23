@@ -5,6 +5,9 @@
  */
 package br.senac.sp.notafiscalmvc.controller;
 
+import br.senac.sp.notafiscalmvc.DAO.NotaFiscalDAO;
+import br.senac.sp.notafiscalmvc.model.NotaFiscal;
+
 /**
  *
  * @author lucas
@@ -15,8 +18,16 @@ public class NotaFiscalController {
     
     public static boolean salvar(int numNota, double valorNota){
         System.out.println("agora estou no controller");
-        System.out.println(numNota);
-        System.out.println(valorNota);
+        System.out.println("número da nota: "+numNota);
+        System.out.println("valor da nota: "+valorNota);
+        
+        NotaFiscal nota = new NotaFiscal();
+        nota.setValNota(valorNota);
+        nota.setNumNota(numNota);
+        
+        NotaFiscalDAO dao = new NotaFiscalDAO();
+        dao.addNota(nota);
+        
         return true;
     }
 }

@@ -28,5 +28,13 @@ public class NotaFiscalDAO {
         
         return true;
     }
+    
+    public static int conta(){
+        return listaNotas.size();
+    }
+    
+    public static NotaFiscal linha(int i){
+        return listaNotas.get(i);
+    }
 
 }

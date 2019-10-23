@@ -32,7 +32,7 @@ public class NotaFiscalTable extends AbstractTableModel {
 
     public int getRowCount() {
         //implementar metodo
-        return 3;
+        return NotaFiscalDAO.conta();
     }
 
     public String getColumnName(int col) {
