@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.senac.sp.notafiscalmvc.view;
 
 import br.senac.sp.notafiscalmvc.controller.NotaFiscalController;
+import br.senac.sp.notafiscalmvc.controller.NotaFiscalTable;
 
 /**
  *
- * @author lucas
+ * @author gabriel.max
  */
 public class NotaFiscalForm extends javax.swing.JFrame {
 
@@ -17,12 +13,17 @@ public class NotaFiscalForm extends javax.swing.JFrame {
      * Creates new form notaFIscalForm
      */
     private NotaFiscalController controller;
-    //private NotaFiscalTable tableController;
+    private NotaFiscalTable tableController;
     
     public NotaFiscalForm() {
         initComponents();
         controller = new NotaFiscalController();
-        //tableController = new NotaFiscalTable();
+        tableController = new NotaFiscalTable();
+    }
+    
+    public void refreshTable(){
+        tableNotas.invalidate();
+        tableNotas.repaint();
     }
 
     /**
@@ -43,7 +44,7 @@ public class NotaFiscalForm extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableNotas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,18 +96,8 @@ public class NotaFiscalForm extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Registrar nota", jPanel1);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "NumNota", "ValorNota"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        tableNotas.setModel(new NotaFiscalTable());
+        jScrollPane1.setViewportView(tableNotas);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -138,16 +129,15 @@ public class NotaFiscalForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        System.out.println("na view: nro nota");
-        System.out.println(campoNumNota.getText());
-        System.out.println("na view: valor nota");
-        System.out.println(campoValorNota.getText());
+        System.out.println("Número da nota:" + campoNumNota.getText());
+        System.out.println("Valor da nota:" + campoValorNota.getText());
         
         int numNota; double valorNota;
         numNota = Integer.parseInt(campoNumNota.getText());
         valorNota = Double.parseDouble(campoValorNota.getText());
         
         controller.salvar(numNota,valorNota);
+        refreshTable();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void unused(){
@@ -199,6 +189,6 @@ public class NotaFiscalForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableNotas;
     // End of variables declaration//GEN-END:variables
 }
